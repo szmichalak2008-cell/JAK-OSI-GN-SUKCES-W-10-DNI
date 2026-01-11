@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROGRES 10 - Jak osiągnąć sukces w 10 dni</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FFB800;
+        }
+
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .cta-button {
+            background: #FFB800;
+            color: black;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .hero {
+            position: relative;
+            height: 700px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700"%3E%3Crect fill="%23334155" width="1200" height="700"/%3E%3C/svg%3E');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 80px 50px 50px;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-intro {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: #FFB800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 30px;
+            line-height: 1.3;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-button {
+            background: #FFB800;
+            color: black;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(255, 184, 0, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .hero-button:hover {
+            transform: scale(1.05);
+        }
+
+        .info-section {
+            padding: 80px 50px;
+            text-align: center;
+            background: #1a1a1a;
+        }
+
+        .info-section h2 {
+            font-size: 42px;
+            color: #FFB800;
+            margin-bottom: 40px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 184, 0, 0.2);
+        }
+
+        .info-card h3 {
+            font-size: 24px;
+            color: #FFB800;
+            margin-bottom: 15px;
+        }
+
+        .info-card p {
+            font-size: 16px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .wheel-section {
+            padding: 100px 50px;
+            text-align: center;
+            background: linear-gradient(180deg, #2d2d2d 0%, #1a1a1a 100%);
+        }
+
+        .wheel-section h2 {
+            font-size: 48px;
+            color: #FFB800;
+            margin-bottom: 20px;
+        }
+
+        .wheel-section > p {
+            font-size: 22px;
+            margin-bottom: 60px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .wheel-container {
+            max-width: 400px;
+            margin: 0 auto 50px;
+            position: relative;
+        }
+
+        .wheel {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            border: 15px solid #FFB800;
+            margin: 0 auto;
+            position: relative;
+            background: conic-gradient(
+                from 0deg,
+                #FF6B35 0deg 180deg,
+                #4CAF50 180deg 360deg
+            );
+            transition: transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99);
+            box-shadow: 0 0 40px rgba(255, 184, 0, 0.6);
+        }
+
+        .wheel::before {
+            content: 'TAK';
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .wheel::after {
+            content: 'NIE';
+            position: absolute;
+            top: 50%;
+            right: 25%;
+            transform: translate(50%, -50%) rotate(90deg);
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #FFB800;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        }
+
+        .spin-button {
+            background: linear-gradient(135deg, #FF6B35 0%, #FFB800 100%);
+            color: white;
+            padding: 20px 60px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .spin-button:hover {
+            transform: scale(1.05);
+        }
+
+        .spin-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .result-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .result-content {
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            border: 3px solid #FFB800;
+            box-shadow: 0 0 50px rgba(255, 184, 0, 0.5);
+        }
+
+        .result-content h2 {
+            font-size: 42px;
+            color: #4CAF50;
+            margin-bottom: 25px;
+            line-height: 1.2;
+        }
+
+        .result-content > p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .result-content .course-info {
+            background: rgba(255, 184, 0, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 25px 0;
+        }
+
+        .course-info h3 {
+            color: #FFB800;
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+
+        .course-info p {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .close-modal {
+            background: #FFB800;
+            color: black;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 50px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            font-size: 28px;
+            color: #FFB800;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        .footer p {
+            opacity: 0.7;
+            font-size: 16px;
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .wheel-section h2 {
+                font-size: 32px;
+            }
+
+            .result-content {
+                padding: 30px;
+            }
+
+            .result-content h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">📊 PROGRES 10</div>
+        <div class="nav">
+            <a href="#metoda">O metodzie</a>
+            <a href="#plan">Plan 10-dniowy</a>
+            <a href="#sukces">Sukces</a>
+        </div>
+        <button class="cta-button">ZACZNIJ TERAZ</button>
+    </div>
+
+    <div class="hero">
+        <img src="https://i.ibb.co/5GgMYJ9/hero-image.jpg" alt="Jak osiągnąć sukces w 10 dni" class="hero-image" onerror="this.style.display='none'">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-intro">Hej, jestem Szymon i pokażę Ci jak osiągnąć sukces</p>
+            <h1>Zmień swoje życie w niecałe dwa tygodnie</h1>
+            <p>Sprawdzona metodologia, która zamienia chaos w konkretne wyniki. Przestań planować, zacznij działać.</p>
+            <button class="hero-button">POBIERZ DARMOWY PLANER</button>
+        </div>
+    </div>
+
+    <div class="info-section">
+        <h2>Dlaczego akurat 10 dni?</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>📝 Konkretny Plan</h3>
+                <p>Systematyczny układ zadań, które prowadzą do realnych rezultatów. Żadnych filozofii, tylko działanie.</p>
+            </div>
+            <div class="info-card">
+                <h3>💡 Konieczny Umyśl</h3>
+                <p>Zbuduj mentalność zwycięzcy. Naucz się, jak myśleć, aby osiągać cele.</p>
+            </div>
+            <div class="info-card">
+                <h3>🎯 Jasność Umyślu</h3>
+                <p>Odkryj swoją prawdziwą drogę. Poznaj, czego naprawdę pragniesz w życiu.</p>
+            </div>
+            <div class="info-card">
+                <h3>🚀 Nowe Nawyki</h3>
+                <p>Wprowadź zmiany, które zostaną z Tobą na zawsze. Zbuduj fundament sukcesu.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="wheel-section">
+        <h2>🎰 Czy osiągniesz sukces?</h2>
+        <p>Sprawdź swoją fortunę! Zakręć kołem i zobacz, co los dla Ciebie przygotował...</p>
+        
+        <div class="wheel-container">
+            <div class="wheel-pointer"></div>
+            <div class="wheel" id="wheel"></div>
+        </div>
+
+        <button class="spin-button" id="spinButton">ZAKRĘĆ KOŁEM FORTUNY</button>
+    </div>
+
+    <div class="result-modal" id="resultModal">
+        <div class="result-content">
+            <h2>✅ TAK! OSIĄGNIESZ SUKCES!</h2>
+            <p>Gratulacje! Koło fortuny wskazało, że masz potencjał, aby osiągnąć sukces w 10 dni!</p>
+            
+            <div class="course-info">
+                <h3>🎓 Odkryj nasze kursy online</h3>
+                <p>
+                    Nie czekaj! Dołącz do tysięcy osób, które zmieniły swoje życie dzięki metodzie PROGRES 10.
+                </p>
+                <p style="margin-top: 15px;">
+                    ✨ Konkretny plan działania<br>
+                    ✨ Wsparcie mentorów 24/7<br>
+                    ✨ Gwarancja rezultatów
+                </p>
+            </div>
+
+            <button class="close-modal" id="closeModal">ROZPOCZNIJ SWOJĄ PODRÓŻ</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="contact-info">
+                📞 Kontakt: +48 123 456 789
+            </div>
+            <p>© 2026 PROGRES 10. Wszystkie prawa zastrzeżone.</p>
+            <p>Zmień swoje życie w 10 dni - Sprawdzona metodologia sukcesu</p>
+        </div>
+    </div>
+
+    <script>
+        const wheel = document.getElementById('wheel');
+        const spinButton = document.getElementById('spinButton');
+        const resultModal = document.getElementById('resultModal');
+        const closeModal = document.getElementById('closeModal');
+        let isSpinning = false;
+
+        spinButton.addEventListener('click', function() {
+            if (isSpinning) return;
+            
+            isSpinning = true;
+            spinButton.disabled = true;
+            spinButton.textContent = 'KRĘCIMY...';
+
+            const targetRotation = 3600 + 90;
+            
+            wheel.style.transform = `rotate(${targetRotation}deg)`;
+
+            setTimeout(() => {
+                resultModal.style.display = 'flex';
+                isSpinning = false;
+                spinButton.disabled = false;
+                spinButton.textContent = 'ZAKRĘĆ PONOWNIE';
+            }, 4000);
+        });
+
+        closeModal.addEventListener('click', function() {
+            resultModal.style.display = 'none';
+            wheel.style.transition = 'none';
+            wheel.style.transform = 'rotate(0deg)';
+            setTimeout(() => {
+                wheel.style.transition = 'transform 4s cubic-bezier(0.17, 0.67, 0.12, 0.99)';
+            }, 50);
+        });
+
+        resultModal.addEventListener('click', function(e) {
+            if (e.target === resultModal) {
+                closeModal.click();
+            }
+        });
+    </script>
+</body>
+</html>
